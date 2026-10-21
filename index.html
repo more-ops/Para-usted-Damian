@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>para tiii ♡</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #071426;
+  color: #fff;
+  font-family: Georgia, serif;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+  padding: 24px 12px;
+}
+
+main {
+  width: min(100%, 440px);
+  text-align: center;
+  padding: 24px 18px;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: 3px;
+  font-size: 27px;
+}
+
+.subtitle {
+  color: #c8d7e9;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.heart {
+  width: 230px;
+  max-width: 85%;
+  margin: 20px auto;
+  overflow: visible;
+}
+
+.heart path {
+  fill: #fff;
+  fill-opacity: 0.04;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 4s ease forwards, glow 2s 4s infinite alternate;
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes glow {
+  from { filter: drop-shadow(0 0 2px #fff); }
+  to { filter: drop-shadow(0 0 12px #9ebcde); }
+}
+
+button {
+  background: #fff;
+  color: #071426;
+  border: 1px solid #fff;
+  padding: 13px 22px;
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+button:hover {
+  background: #dce8f5;
+}
+
+#envelope, #letter {
+  display: none;
+}
+
+#envelope {
+  animation: appear 1s ease;
+}
+
+.envelope {
+  font-size: 85px;
+  margin: 22px 0 4px;
+  cursor: pointer;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#letter {
+  background: #fff;
+  color: #102440;
+  padding: 27px 22px;
+  margin-top: 20px;
+  line-height: 1.9;
+  text-align: left;
+  animation: appear 1s ease;
+  border: 1px solid #cbd9e9;
+}
+
+#letter h2 {
+  text-align: center;
+  font-weight: normal;
+}
+
+.signature {
+  text-align: right;
+  margin-top: 25px;
+}
+
+#restart {
+  display: none;
+}
+</style>
+</head>
+<body>
+<main>
+  <section id="intro">
+    <p class="subtitle">✧ algo que quiero mostrarte ✧</p>
+    <h1>para ti, Damián</h1>
+
+    <svg class="heart" viewBox="0 0 200 190"
+         xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 170
+        C85 150 15 108 15 57
+        C15 9 76 1 100 43
+        C124 1 185 9 185 57
+        C185 108 115 150 100 170 Z"/>
+    </svg>
+
+    <p class="subtitle">hecho con un poquito de mí ♡</p>
+    <button id="continue">hay algo más...</button>
+  </section>
+
+  <section id="envelope">
+    <p class="subtitle">es para ti, solamente para ti</p>
+    <div class="envelope" id="open" role="button"
+         tabindex="0" aria-label="Abrir la carta">✉</div>
+    <h1>una pequeña carta</h1>
+    <p>toca el sobre para descubrirla</p>
+  </section>
+
+  <article id="letter">
+    <h2>para Damián ♡</h2>
+    <p>
+     No sé en qué momento empezaste a ser alguien tan especial para mí. Solo sé que, desde que llegaste, hay pequeños 
+      detalles que se convirtieron en grandes momentos que significan mucho mas de lo que puedes imaginar. 
+    </p>
+    <p>
+      Te amo demasiado, y quiero decirte todo lo que siento por ti, aunque me demoraria muchisimo, pero sabes? Hare 
+      que cada día te des cuenta de lo muchisimo que te amo y el amor que te tengo que ni las palabras pueden expresar 
+      todo lo que siento por ti. Quiero ser la mujer que este a tu lado por la eternidad, cuidar de ti, apoyarte en 
+      todo, estar en todo momento para ti, ser la persona en quien confies y encuentres un refugio. 
+    </p>
+    <p>
+      Se que es mucho pedirte que estemos juntos por la eternidad, ya que no se trata de un momento solamente, se trata
+      de que quiero estar contigo por siempre y para siempre, porque eres tu al que quiero tener a mi lado, eres tu con 
+      quien me quiero casar, formar una famila, un hogar... explorar el mundo con nuestra mutua compañia. Hay tantas 
+      cosas que te quiero decir en serio.
+    </p>
+    <p class="signature">con cariño, de mi para ti. ♡</p>
+  </article>
+
+  <button id="restart">volver al principio</button>
+</main>
+
+<script>
+const intro = document.getElementById("intro");
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("letter");
+const restart = document.getElementById("restart");
+
+document.getElementById("continue").onclick = () => {
+  intro.style.display = "none";
+  envelope.style.display = "block";
+};
+
+function openLetter() {
+  envelope.style.display = "none";
+  letter.style.display = "block";
+  restart.style.display = "inline-block";
+}
+
+document.getElementById("open").onclick = openLetter;
+
+document.getElementById("open").onkeydown = (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openLetter();
+  }
+};
+
+restart.onclick = () => {
+  letter.style.display = "none";
+  restart.style.display = "none";
+  envelope.style.display = "none";
+  intro.style.display = "block";
+
+  const oldHeart = document.querySelector(".heart");
+  const newHeart = oldHeart.cloneNode(true);
+  oldHeart.replaceWith(newHeart);
+};
+</script>
+</body>
+</html>
